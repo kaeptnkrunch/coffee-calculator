@@ -1,4 +1,4 @@
-﻿#Begrüßung
+﻿# Greeting
 Write-Host "
 _________         _____  _____                             .__               .__          __                
 \_   ___ \  _____/ ____\/ ____\____   ____     ____ _____  |  |   ____  __ __|  | _____ _/  |_  ___________ 
@@ -8,70 +8,75 @@ _________         _____  _____                             .__               .__
         \/                        \/     \/       \/     \/          \/                \/                   
 v1.0 made by Stephan Langenau `n" 
 
-#Datum
+# Date
 $datum = Get-Date 
-Write-Host "Heute haben wir den $datum `n"
+Write-Host "Today we have $datum `n"
 
-# Hinweis
-Write-Host "Hinweis: Dezimalstellen werden durch einen Punkt angegeben z.B. 0.10€"
+# Note 
+Write-Host "Note: Decimal places are indicated by a point e.g. € 0.10"
 
-# Abfrage Kaffee in Tassen
-$Input1 = Read-Host "Gebe das Gewicht der Kaffeepackung in Gramm an"
-$Input2 = Read-Host "Geb bitte den Preis für die Kaffeepackung in € an"
-$Input3 = Read-Host "Geb bitte die Marge für den Preis pro Kaffee in € an"
-$Input0 = Read-Host "Möchten Sie eine ganze Kanne Kaffee machen?"
+# Query coffee in cups
+$Input1 = Read-Host "Enter the weight of the coffee package in grams"
+$Input2 = Read-Host "Please enter the price for the coffee pack in €"
+$Input3 = Read-Host "Please enter the margin for the price per coffee in €"
+
+# Break
+Write-Host "`n"
+
+# Note
+Write-Host "Answears: yes or no"
+$Input0 = Read-Host "Would you like to make a whole pot of coffee?"
 
 
-# Beispielrechnung (1 Kanne Kaffee)
-# x g Kaffee / 70g pro Portion = 2 L Kaffee / 10 = Mege Kaffees aus 2L Kaffee = Preis pro 200ml Tasse + 0,05€; 0,10€ Marge
-# Beispiel: 500g(11,50€)/70g=7,14 Portionen (1,61€ 2L)/10 = 0,16€ pro 200ml + 0,05€; 0,10€ Marge (Bsp: 0,16€ + 0,10€ Marge = 0,26€ pro 200ml Tasse Kaffee)
+# Example calculation (1 pot of coffee)
+# x g coffee / 70 g per portion = 2 L coffee / 10 = amount of coffee from 2 L coffee = price per 200 ml cup + € 0.05; € 0.10 margin
+# Example: 500g (11.50 €) / 70g = 7.14 servings (1.61 € 2L) / 10 = 0.16 € per 200ml + 0.05 €; € 0.10 margin (e.g. € 0.16 + € 0.10 margin = € 0.26 per 200ml cup of coffee)
 
-# like Anfrage
-if($Input0 -like "Ja")
+# like query
+if($Input0 -like "yes")
 {
-    # Berechnung
+    # Calculation 1
     $calculation = ($Input1 / 70) 
     $calculation2 = ($Input2 / $calculation) / 10 + $Input3
 
-    # Zeilenumbruch
+    # Break
     Write-Host "`n"
 
-    # Ausgabe
-    Write-Host "Mit dem Gewicht von $Input1 g erhälst du $calculation Kannen Kaffee"
-    Write-Host "Der Preis pro 200ml Tasse Kaffee ist $calculation2 € mit einer Marge von $Input3 €"
+    # Output 1
+    Write-Host "With the weight of $Input1 g you get $calculation pots of coffee"
+    Write-Host "The price per 200ml cup of coffee is $calculation2 € with a margin of $Input3 €"
 
 } else {
 
-    # Beispielrechnung (1 Tassee Kaffee)
-    # 70g = 2L Kaffee/200ml = 10 Tassen Kaffee = 70/10=7g Kaffee pro Tasse
+    # Sample calculation (1 cup of coffee)
+    # 70g = 2L of coffee / 200ml = 10 cups of coffee = 70/10 = 7g of coffee per cup
 
-    # Input Tassen Kaffee
-    $objForm.Controls.Add($objTextBox)
-    $Input4 = Read-Host "Wieviele Tassen Kaffee möchten Sie machen?"
+    # Input cups of coffee
+    $Input4 = Read-Host "How many cups of coffee do you want to make?"
     
-    # Zeilenumbruch
+    # Break
     Write-Host "`n"
 
-    # Berechnung pro Tasse
+    # Calculation per cup
     $calculation3 = (7 * $Input4)
 
-    # Berechnung
+    # Calculation 2
     $calculation = ($Input1 / 70) 
     $calculation2 = ($Input2 / $calculation) / 10 + $Input3
 
     # Ausgabe Kaffee pro Tasse
-    Write-Host "Für $Input4 Tassen Kaffee brauchen Sie $calculation3 g Kaffee"
+    Write-Host "For $Input4 cups of coffee you need $calculation3 g of coffee"
 
     if ($Input4 -eq 10)
     {
-        # Zeilenumbruch
-        echo "Dann kannst du auch gleich eine ganze Kanne Kaffee mit 70g Kaffee machen!"
+        # Break
+        echo "Then you can make a whole pot of coffee with 70g of coffee!"
         
     } else { 
             Write-Host "`n"
             }
     
-    # Ausgabe 2
-    Write-Host "Mit dem Gewicht von $Input1 g erhälst du $calculation Kannen Kaffee"
-    Write-Host "Der Preis pro 200ml Tasse Kaffee ist $calculation2 € mit einer Marge von $Input3 €"
+    # Output 2
+    Write-Host "With the weight of $Input1 g you get $calculation pots of coffee"
+    Write-Host "The price per 200ml cup of coffee is $calculation2 € with a margin of $Input3 €"
 }
